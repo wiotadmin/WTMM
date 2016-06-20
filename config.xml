@@ -3,7 +3,7 @@
         xmlns:gap = "http://phonegap.com/ns/1.0"
         xmlns:android = "http://schemas.android.com/apk/res/android"
         id        = "com.wodongatafe.moodlemobile"
-        versionCode = "10020"
+        versionCode = "10021"
         version   = "3.1.1">
     <name>WT Moodle</name>
 
@@ -117,9 +117,7 @@
     <gap:plugin name="cordova-plugin-whitelist" source="npm" />
     <gap:plugin name="cordova-plugin-splashscreen" source="npm" />
 
-    <gap:plugin name="phonegap-plugin-push" source="npm" >
-        <param name="SENDER_ID" value="694767596569" />
-    </gap:plugin>
+    
     <gap:plugin name="net.tunts.webintent" />
     <gap:plugin name="cordova-plugin-customurlscheme" source="npm">
         <param name="URL_SCHEME" value="moodlemobile" />
