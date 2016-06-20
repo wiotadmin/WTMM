@@ -1179,6 +1179,7 @@ angular.module('mm.core')
             });
         });
     };
+
         self.clearFilepool = function(siteId) {
         return getSiteDb(siteId).then(function(db) {
             return db.removeAll(mmFilepoolStore);
@@ -2782,6 +2783,7 @@ angular.module('mm.core')
                             language = language.substr(0, language.indexOf('-'));
                         }
                     }
+
                     return language;
                 }, function() {
                     return mmCoreConfigConstants.default_lang || fallbackLanguage;
@@ -6685,8 +6687,11 @@ angular.module('mm.core.login', [])
     .state('mm_login.site', {
         url: '/site',
         templateUrl: 'core/components/login/templates/site.html',
-        controller: 'mmLoginSiteCtrl'
-    })
+        controller: 'mmLoginSiteCtrl',
+		onEnter: function($state) {
+        	$state.go('mm_login.credentials', {siteurl: 'https://online.tafevc.com.au/wodonga'});
+    	}
+	 })
     .state('mm_login.credentials', {
         url: '/cred',
         templateUrl: 'core/components/login/templates/credentials.html',
@@ -15395,6 +15400,7 @@ angular.module('mm.addons.messages')
                 if ($scope.userId == userId) {
                     $scope.profileLink = user.profileimageurl || true;
                 }
+
             });
         }
     });
@@ -16681,6 +16687,7 @@ angular.module('mm.addons.participants')
             return false;
         });
     };
+
     return self;
 }]);
 
@@ -21704,6 +21711,7 @@ angular.module('mm.addons.mod_glossary')
     $scope.searchData = {
         searchQuery: ''
     };
+
     $scope.loadingMessage = loadingMessage;
     $scope.loadMoreEntries = function() {
         loadMoreEntries().finally(function() {
@@ -24667,6 +24675,7 @@ angular.module('mm.addons.mod_quiz')
                     var page = attempt.currentpage;
                     promise = self.getAttemptData(attempt.id, page, scope.preflightData, offline, true).then(function() {
                         if (offline) {
+
                             return $mmaModQuizOffline.getAttemptById(attempt.id).then(function(localAttempt) {
                                 attempt.currentpage = localAttempt.currentpage;
                             }).catch(function() {
@@ -28079,6 +28088,7 @@ angular.module('mm.addons.mod_scorm')
                                 $scope.spinner = false;
                             });
                         }).catch(function(error) {
+
                             $scope.spinner = false;
                             if (error) {
                                 $mmUtil.showErrorModal(error);
